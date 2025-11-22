@@ -184,4 +184,3 @@ Potential future features:
 ---
 
 **Note**: This web-based alternative maintains full compatibility with GBounty profiles (.bb2/.json formats) and provides a modern, browser-based interface for profile management without requiring Java installation.
-# GBountyNewDesigner

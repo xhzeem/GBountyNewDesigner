@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBounty Profiles Designer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Left Panel: Form Editor -->
+        <div class="editor-panel">
+            <header class="app-header">
+                <h1>GBounty Profiles Designer</h1>
+                <div class="page-navigation">
+                    <button id="btn-show-templates" class="btn primary small page-nav-btn active">Templates</button>
+                    <button id="btn-show-profile" class="btn secondary small page-nav-btn">Profile Editor</button>
+                </div>
+                <div class="actions">
+                    <button id="btn-new" class="btn secondary small">New</button>
+                    <button id="btn-open" class="btn secondary small">Open</button>
+                    <button id="btn-download" class="btn primary small">Download JSON</button>
+                    <button id="btn-variables" class="btn secondary small">Variables</button>
+                </div>
+            </header>
+
+            <!-- Templates Page -->
+            <div id="templates-page" class="page-content active">
+                <div class="scrollable-content">
+                    <div class="card">
+                        <div class="template-manager-header">
+                            <h2>Template Manager</h2>
+                            <div class="template-stats" id="template-stats">
+                                <!-- Stats will be populated by JS -->
+                            </div>
+                        </div>
+                        
+                        <div class="template-actions">
+                            <div class="template-actions-left">
+                                <div>
+                                    <button id="btn-create-template" class="btn primary small">New Template</button>
+                                    <button id="btn-import-templates" class="btn secondary small" title="Import single or multiple .bb2/.json files">Import Templates</button>
+                                    <button id="btn-download-all" class="btn secondary small">Download All</button>
+                                </div>
+                                <div class="import-help-text">Supports multiple files & drag-and-drop</div>
+                            </div>
+                            <div class="template-search">
+                                <input type="text" id="template-search" placeholder="Search templates..." class="search-input">
+                            </div>
+                        </div>
+
+                        <div class="templates-list" id="templates-list">
+                            <!-- Template list will be populated by JS -->
+                        </div>
+                        
+                        <div id="drop-zone" class="drop-zone" style="display: none;">
+                            <div class="drop-zone-content">
+                                <div class="drop-zone-icon">📁</div>
+                                <div class="drop-zone-text">Drop .bb2 or .json files here to import templates</div>
+                                <div class="drop-zone-subtext">Multiple files supported</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Editor Page -->
+            <div id="profile-page" class="page-content">
+                <div class="scrollable-content">
+                    <!-- Current Template Info -->
+                    <div class="template-editor-header">
+                        <div class="current-template-info" id="current-template-info">
+                            <span class="template-name">No template selected</span>
+                            <div class="template-actions-header">
+                                <button id="btn-save-template" class="btn primary small" disabled>Save Changes</button>
+                                <button id="btn-discard-changes" class="btn danger small" disabled>Discard Changes</button>
+                                <button id="btn-back-to-templates" class="btn secondary small">← Back to Templates</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- General Info -->
+                    <div class="card">
+                        <h2>Profile Information</h2>
+                        <div class="form-group">
+                            <label for="profile_name">Profile Name</label>
+                            <input type="text" id="profile_name" data-path="profile_name">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" id="author" data-path="author">
+                            </div>
+                            <div class="form-group">
+                                <label for="scanner">Scanner</label>
+                                <select id="scanner" data-path="scanner">
+                                    <option value="active">Active</option>
+                                    <option value="passive">Passive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="enabled" data-path="enabled">
+                            <label for="enabled">Enabled</label>
+                        </div>
+                    </div>
+
+                    <!-- Main Tabs -->
+                    <div class="main-tabs">
+                        <button class="main-tab-btn active" data-target="requests-responses-content">Requests /
+                            Responses</button>
+                        <button class="main-tab-btn" data-target="tags-content">Tags</button>
+                    </div>
+
+                    <!-- Requests / Responses Content -->
+                    <div id="requests-responses-content" class="main-tab-content active">
+                        <div id="steps-container">
+                            <!-- Dynamic Steps will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Tags Content -->
+                    <div id="tags-content" class="main-tab-content">
+                        <div class="card">
+                            <h2>Tags Manager</h2>
+                            <div class="tags-manager">
+                                <div class="tags-actions">
+                                    <input type="text" id="new-tag-input" placeholder="New Tag">
+                                    <button id="btn-add-tag" class="btn secondary small">Add</button>
+                                    <button id="btn-remove-tag" class="btn danger small" disabled>Remove Selected</button>
+                                </div>
+                                <div class="tags-list-box">
+                                    <select id="tags-select" multiple></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: JSON Preview -->
+        <div class="gutter" id="resize-handle"></div>
+        <div class="preview-panel" id="preview-panel">
+            <header class="panel-header">
+                <h2>JSON Preview</h2>
+                <div class="panel-actions">
+                    <button id="btn-toggle-view" class="btn secondary small">Edit JSON</button>
+                    <button id="btn-copy" class="btn secondary small">Copy</button>
+                    <button id="btn-hide-json" class="btn secondary small" title="Hide Panel">×</button>
+                </div>
+            </header>
+            <div class="editor-container">
+                <textarea id="json-editor" spellcheck="false"></textarea>
+                <pre id="json-viewer" class="json-viewer"></pre>
+            </div>
+        </div>
+    </div>
+
+    <button id="btn-show-json" class="btn secondary small floating-toggle" style="display: none;">Show JSON</button>
+
+    <!-- Variables Modal -->
+    <div id="variables-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-container">
+            <header class="modal-header">
+                <h2>Available Variables</h2>
+                <button id="btn-close-modal" class="btn small secondary">×</button>
+            </header>
+            <div class="modal-body">
+                <table class="data-table" id="variables-table">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conflict Resolution Modal -->
+    <div id="conflict-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-container conflict-modal">
+            <header class="modal-header">
+                <h2>Template Conflict Detected</h2>
+            </header>
+            <div class="modal-body">
+                <div id="conflict-message" class="conflict-message"></div>
+                <div class="conflict-options">
+                    <div class="conflict-option">
+                        <input type="radio" id="conflict-override" name="conflict-action" value="override">
+                        <label for="conflict-override">
+                            <strong>Override existing template</strong>
+                            <div class="option-description">Replace the existing template with the imported one</div>
+                        </label>
+                    </div>
+                    <div class="conflict-option">
+                        <input type="radio" id="conflict-rename" name="conflict-action" value="rename" checked>
+                        <label for="conflict-rename">
+                            <strong>Keep both templates</strong>
+                            <div class="option-description">Import with a new name (e.g., "Template Name (1)")</div>
+                        </label>
+                    </div>
+                    <div class="conflict-option">
+                        <input type="radio" id="conflict-skip" name="conflict-action" value="skip">
+                        <label for="conflict-skip">
+                            <strong>Skip this template</strong>
+                            <div class="option-description">Don't import this template</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-conflict-apply" class="btn primary">Apply</button>
+                <button id="btn-conflict-apply-all" class="btn secondary">Apply to All</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/schema.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/template-manager.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

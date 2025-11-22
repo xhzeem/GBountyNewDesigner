@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBounty Profiles Designer - Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .demo-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #007acc;
+            border-radius: 4px;
+        }
+        .feature-item h4 {
+            margin: 0 0 8px 0;
+            color: #007acc;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007acc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px 10px 10px 0;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background: #0062a3;
+        }
+        .btn.secondary {
+            background: #6c757d;
+        }
+        .btn.secondary:hover {
+            background: #545b62;
+        }
+        .screenshot {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .stat {
+            padding: 15px;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #007acc;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .workflow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .workflow-step {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            margin: 5px;
+            background: #e3f2fd;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+        .workflow-arrow {
+            font-size: 1.5em;
+            color: #007acc;
+        }
+        @media (max-width: 768px) {
+            .workflow {
+                flex-direction: column;
+            }
+            .workflow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-section">
+        <h1>🚀 GBounty Profiles Designer - Enhanced Multi-Template Manager</h1>
+        <p>Transform your security testing workflow with powerful multi-template management capabilities. Create, organize, and manage unlimited GBounty profiles with ease.</p>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Templates</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Compatible</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Setup Required</div>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn">Launch Application</a>
+        <button onclick="loadSampleData()" class="btn secondary">Load Sample Templates</button>
+    </div>
+
+    <div class="demo-section">
+        <h2>✨ Key Features</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4>Multi-Template Management</h4>
+                <p>Create and manage unlimited security testing profiles in one organized interface.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Bulk Operations</h4>
+                <p>Import/export multiple templates, download all profiles, and perform batch operations.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Smart Search</h4>
+                <p>Quickly find templates by name, author, or content with real-time search filtering.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Visual Editor</h4>
+                <p>Intuitive interface for creating complex security testing profiles without coding.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Auto-Save</h4>
+                <p>Never lose your work with automatic saving and unsaved changes detection.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Template Library</h4>
+                <p>Organize templates with tags, track statistics, and maintain your testing arsenal.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🔄 Workflow</h2>
+        <div class="workflow">
+            <div class="workflow-step">
+                <h4>1. Create</h4>
+                <p>Start with a new template or duplicate existing ones</p>
+            </div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">
+                <h4>2. Edit</h4>
+                <p>Configure payloads, greps, and security testing parameters</p>
+            </div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">
+                <h4>3. Organize</h4>
+                <p>Tag, search, and manage your template library</p>
+            </div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">
+                <h4>4. Deploy</h4>
+                <p>Export templates for use in GBounty security testing</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🎯 Use Cases</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4>Security Teams</h4>
+                <p>Build comprehensive testing suites for different vulnerability types and share across team members.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Penetration Testers</h4>
+                <p>Maintain organized collections of proven testing methodologies for various scenarios.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Bug Bounty Hunters</h4>
+                <p>Create specialized templates for different platforms and vulnerability classes.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Security Researchers</h4>
+                <p>Experiment with new testing approaches and maintain research-based template libraries.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🚀 Getting Started</h2>
+        <ol>
+            <li><strong>Launch the Application</strong> - Click the button above to open the enhanced designer</li>
+            <li><strong>Create Your First Template</strong> - Use the "New Template" button in the Templates tab</li>
+            <li><strong>Configure Security Tests</strong> - Switch to the editor tab and set up your testing parameters</li>
+            <li><strong>Save and Organize</strong> - Save your template and use tags for organization</li>
+            <li><strong>Export for Testing</strong> - Download your templates as .bb2 files for GBounty</li>
+        </ol>
+        
+        <p><strong>Pro Tip:</strong> Load the sample templates to see examples of SQL injection, XSS, and directory traversal testing profiles.</p>
+    </div>
+
+    <div class="demo-section">
+        <h2>📊 What's New</h2>
+        <ul>
+            <li>✅ <strong>Multi-template support</strong> - Manage unlimited profiles</li>
+            <li>✅ <strong>Template library interface</strong> - Organized template management</li>
+            <li>✅ <strong>Bulk import/export</strong> - Handle multiple templates at once</li>
+            <li>✅ <strong>Search and filtering</strong> - Find templates quickly</li>
+            <li>✅ <strong>Template statistics</strong> - Track your testing arsenal</li>
+            <li>✅ <strong>Unsaved changes detection</strong> - Never lose work</li>
+            <li>✅ <strong>Template duplication</strong> - Create variations easily</li>
+            <li>✅ <strong>Enhanced UI/UX</strong> - Improved workflow and usability</li>
+        </ul>
+    </div>
+
+    <script>
+        function loadSampleData() {
+            // This would load sample templates into localStorage
+            const sampleTemplates = [
+                {
+                    id: 1,
+                    name: "SQL Injection Test",
+                    created: new Date().toISOString(),
+                    modified: new Date().toISOString(),
+                    profile: {
+                        profile_name: "SQL Injection Test",
+                        enabled: true,
+                        scanner: "active",
+                        author: "Demo User",
+                        steps: [{
+                            request_type: "original",
+                            payloads: ["true,\\' OR \\'1\\'=\\'1", "true,1\\' UNION SELECT NULL--"],
+                            insertion_points: ["Param body value", "Param url value"],
+                            grep: ["true,OR,Simple String,,error", "true,OR,Simple String,,mysql"],
+                            issue_name: "SQL Injection Vulnerability",
+                            issue_severity: "High"
+                        }],
+                        Tags: ["SQL", "Injection", "Database"]
+                    }
+                },
+                {
+                    id: 2,
+                    name: "XSS Detection",
+                    created: new Date().toISOString(),
+                    modified: new Date().toISOString(),
+                    profile: {
+                        profile_name: "XSS Detection",
+                        enabled: true,
+                        scanner: "active",
+                        author: "Demo User",
+                        steps: [{
+                            request_type: "original",
+                            payloads: ["true,XSS_PAYLOAD_1", "true,XSS_PAYLOAD_2"],
+                            insertion_points: ["Param body value", "Param url value"],
+                            grep: ["true,OR,Simple String,,script", "true,OR,Simple String,,alert"],
+                            issue_name: "Cross-Site Scripting (XSS)",
+                            issue_severity: "Medium"
+                        }],
+                        Tags: ["XSS", "JavaScript", "Client-Side"]
+                    }
+                }
+            ];
+            
+            try {
+                localStorage.setItem('gbounty-templates', JSON.stringify(sampleTemplates));
+                alert('Sample templates loaded! Launch the application to see them.');
+            } catch (e) {
+                alert('Error loading sample data: ' + e.message);
+            }
+        }
+    </script>
+</body>
+</html>
